@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('partials/head', {title: 'Inicio'}) %>
+<body>
+	<%- include('partials/headerNavbar') %>
+	
+	<div class="banner"></div>
+	
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Basado en tu última visita</h2>
+			</div>
+			<% visited.forEach(function(product){ 
+				let finalPrice = (product.price * ((100 - product.discount) / 100)).toFixed(0)
+			%> 
+				<%- include('partials/article', { product, finalPrice }) %>				
+			<% }) %>
+			</div>
+		</div>
+		<!-- /ultima visita -->
+		
+		<!-- Ofertas -->
+		<div class="container products-wrapper">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="products-title">Ofertas</h2>
+				</div>
+				<% inSale.forEach(function(product){ 
+					let finalPrice = (product.price * ((100 - product.discount) / 100)).toFixed(0)
+				%>
+					<%- include('partials/article', { product, finalPrice }) %>
+				<% }) %>
+				</div>
+			</div>
+
+			<%- include('partials/footer') %>
+
+		</body>	
+		</html>
